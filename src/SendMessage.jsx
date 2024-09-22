@@ -5,19 +5,20 @@ import axios from "axios";
 function SendMessage() {
   const { id } = useParams();
   const [message, setMessage] = useState("Hi. Your OTP is: 123456");
+  const [phone, setPhone]=useState("+919999999999");
   const api=import.meta.env.VITE_API;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${api}/send-message`, { id, message })
+      .post(`${api}/send-message`, { id, message, phone })
       .then((response) => {
         console.log("🚀 ~ handleSubmit ~ response:", response);
         alert("Message sent successfully");
       })
       .catch((error) => {
         console.error("Error sending message:", error);
-        alert("Failed to send message");
+        alert("Failed to send message", error);
       });
   };
 
@@ -27,6 +28,12 @@ function SendMessage() {
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Compose Message
         </h2>
+        <p className="text-gray-700 text-lg mb-4">
+              <strong>Phone:</strong> <input className="border-2"
+              value={phone}
+              onChange={(e)=>setPhone(e?.target?.value)}
+              />
+            </p>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label

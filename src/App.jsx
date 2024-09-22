@@ -3,6 +3,7 @@ import './App.css'
 import Contacts from './Contacts'
 import ContactDetails from './ContactDetails'
 import SendMessage from './SendMessage'
+import MessagesList from './MessagesList'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={ <Contacts/> } />
         <Route path="/contact/:id" element={ <ContactDetails/> } />
         <Route path="send-message/:id" element={ <SendMessage/> } />
+        <Route path="message-list" element={ <MessagesList/> } />
       </Routes>
   )
 }
